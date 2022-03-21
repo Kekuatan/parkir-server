@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaPositionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -32,12 +33,16 @@ Route::post('/client', function(Request $request){
     return response()->json($response);
 });
 
+
+
 Route::group([
     'middleware' => ['auth:api']
 ], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::apiResource('/area', AreaPositionController::class);
 
 });
 

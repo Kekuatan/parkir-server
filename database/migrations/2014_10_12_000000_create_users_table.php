@@ -17,9 +17,18 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name')->nullable();
             $table->string('email')->unique();
+            $table->string('phone_number')->unique();
+            $table->string('gender');
+            $table->text('address')->nullable();
+            $table->unsignedTinyInteger('level');
+            $table->foreignId('shift_id')->constrained('shifts')->nullable();
+            $table->unsignedDecimal('tax');
+
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
             $table->timestamps();
             $table->softDeletes();
         });
