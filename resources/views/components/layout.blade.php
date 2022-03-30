@@ -31,7 +31,6 @@
 {{--    @routes--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
 
-
 @if(isset($style))
     {{ $style }}
 @endif
@@ -59,7 +58,7 @@
         }
     </style>
 
-{{--    @livewireStyles--}}
+    @livewireStyles
 </head>
 <body>
     @auth('staff')
