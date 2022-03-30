@@ -19,24 +19,22 @@ class CreateTicketsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->unsignedDecimal('total_price');
-
-
+            $table->unsignedDecimal('total_price')->nullable();
             $table->string('barcode_no');
             $table->text('picture_vehicle_in');
-            $table->text('picture_vehicle_out');
-            $table->string('plat_no');
+            $table->text('picture_vehicle_out')->nullable();
+            $table->string('plat_no')->nullable();
 
             $table->foreignId('area_position_in_id')->constrained('area_positions');
-            $table->foreignId('area_position_out_id')->constrained('area_positions');
+            $table->foreignId('area_position_out_id')->nullable()->constrained('area_positions');
             $table->foreignUuid('member_id')->nullable()->constrained('members');
             $table->foreignUuid('voucher_id')->nullable()->constrained('vouchers');
             $table->foreignId('vehicle_id')->constrained('vehicles');
             $table->foreignId('payment_method_id')->nullable()->constrained('payment_methods');
-            $table->foreignUuid('bypasser')->nullable()->constrained('bypassers');
-            $table->foreignUuid('user_id')->constrained('users');
+            $table->foreignId('bypasser_id')->nullable()->constrained('bypassers');
+            $table->foreignUuid('user_id')->nullable()->constrained('users');
             $table->dateTime('start_at');
-            $table->dateTime('end_at');
+            $table->dateTime('end_at')->nullable();
 //            $table->string('type'); // voucher, baypass, manual,MEMBER
 
         });

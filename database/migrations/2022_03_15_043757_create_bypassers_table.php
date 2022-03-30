@@ -14,9 +14,9 @@ class CreateBypassersTable extends Migration
     public function up()
     {
         Schema::create('bypassers', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->text('description');
-
+            $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
