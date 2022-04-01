@@ -33,13 +33,15 @@ Route::group(['middleware' => 'guest:staff'], function () {
 //    Route::get('/passwords/reset', [ForgotPasswordController::class, 'resetForm']);
 });
 Route::get('/logout', LogoutController::class)->middleware('auth:staff')->name('logout');
-
+//Route::livewire('/area-position','area-position');
+//Route::get('/area-position', \App\Http\Livewire\Pages\AreaPosition::class);
 Route::group([
     'prefix' => '/home',
     'middleware' =>['auth:staff'], //['auth:staff', 'logging-web', 'twofa'],
-    'as' => 'home.'
+    'as' => 'home'
 ], function () {
-    Route::get('/', function(){
-        return view('home.home');
-    })->name('index');
+    Route::get('/', \App\Http\Livewire\Pages\AreaPosition::class);
+//    Route::get('/', function(){
+//        return view('home.home');
+//    })->name('index');
 });
