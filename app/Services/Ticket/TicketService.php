@@ -13,16 +13,24 @@ class TicketService
         $this->dateTimeServer = Carbon::now();
     }
 
-    public function dateTime(){
+    public function dateTimeFormated(){
         return $this->dateTimeServer->format('d/m/Y H:i:s');
+    }
+
+    public function getDateTime(){
+        return $this->dateTimeServer;
     }
 
     public function dateTimeBarcode(){
         return $this->dateTimeServer->format('YmdHis');
     }
 
-    public function barcodeNumber(){
-        $dateTime = self::dateTimeParkir();
-        return $dateTime;
+    public function getPictureInName(){
+        return self::barcodeNumber();
+    }
+
+    public function barcodeNumber($areaPositon){
+        $no = self::dateTimeBarcode() . $areaPositon->code;
+        return $no;
     }
 }

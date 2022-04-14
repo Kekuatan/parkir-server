@@ -10,6 +10,8 @@ class Ticket extends Model
 {
     use HasFactory, UuidTrait;
 
+    protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
+
     public function member()
     {
         return $this->hasOne(Member::class);

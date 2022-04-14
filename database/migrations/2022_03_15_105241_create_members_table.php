@@ -31,6 +31,7 @@ class CreateMembersTable extends Migration
             $table->date('end_at');
             $table->dateTime('in')->nullable();
             $table->dateTime('out')->nullable();
+            $table->boolean('stay')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -9,6 +9,8 @@ class Vehicle extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
+
     public function tickets()
     {
         return $this->hasMany(Ticket::class);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Enum\ValidationEnum;
 use App\Http\Controllers\Controller;
+use App\Models\AreaPosition;
+use App\Models\Ticket;
 use App\Services\Member\MemberService;
 use App\Services\Ticket\TicketService;
 use Illuminate\Http\Request;
@@ -36,29 +38,30 @@ class TicketController extends Controller
             //'bypasser_id' => 'nullable|string',
         ];
 
+        $request->validate($validation);
+        $payload = $request->only(['area_position_in_id']);
 
-
-
-        $payload = $request->only(key($validation));
         if ($request->has('member_card_no')){
-            $memberId = $memberService->getIdByCardNumber($request->member_card_no);
-            if ( !blank($memberId)){
-                $payload['member_id'] = $memberId;
+            $member = $memberService->getMemberByCardNumber($request->member_card_no);
+            if ( !blank($member)){
+                $payload['member_id'] = $member->Id;
+                $payload['vehicle_id'] = $member->Id;
             } else {
                 return response()->json(['message' => 'Error member not found'], 422);
             }
         }
 
-        $payload['barcode_no']  = $ticketService->dateTimeBarcode();
-        $payload['start_at']  = $ticketService->dateTime();
-        $payload['picture_vehicle_in']  = $ticketService->dateTimeBarcode() . '-in';
+        $areaPosition = AreaPosition::where('id', '=', $request->area_position_in_id)->first();
+
+        $payload['barcode_no']  = $ticketService->barcodeNumber($areaPosition);
+        $payload['start_at']  = $ticketService->getDateTime();
+        $payload['picture_vehicle_in']  = asset('images/vehicles/'. $payload['barcode_no']. '-in.png');
 
         $request->validate($validation);
+        $ticket = Ticket::create($payload);
 
-        return response()->json($payload);
+        return response()->json($ticket);
 
-
-        return response()->json(['message' => 'success']);
     }
 
     public function update($id, Request $request){

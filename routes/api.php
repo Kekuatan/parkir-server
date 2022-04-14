@@ -37,14 +37,19 @@ Route::post('/client', function(Request $request){
 
 
 Route::group([
-    'middleware' => ['auth:api']
+    'middleware' => ['auth.basic']
 ], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
     Route::apiResource('/area', \App\Http\Controllers\Api\AreaPositionController::class);
+});
 
+Route::group([
+    'middleware' => ['client']
+], function () {
+    Route::post('/ticket/in', \App\Http\Controllers\Api\Ticket\TicketInController::class);
 });
 
 

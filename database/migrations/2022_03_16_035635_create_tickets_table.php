@@ -29,7 +29,7 @@ class CreateTicketsTable extends Migration
             $table->foreignId('area_position_out_id')->nullable()->constrained('area_positions');
             $table->foreignUuid('member_id')->nullable()->constrained('members');
             $table->foreignUuid('voucher_id')->nullable()->constrained('vouchers');
-            $table->foreignId('vehicle_id')->constrained('vehicles');
+            $table->foreignId('vehicle_id')->nullable()->constrained('vehicles');
             $table->foreignId('payment_method_id')->nullable()->constrained('payment_methods');
             $table->foreignId('bypasser_id')->nullable()->constrained('bypassers');
             $table->foreignUuid('user_id')->nullable()->constrained('users');
