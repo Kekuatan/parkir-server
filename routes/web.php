@@ -45,3 +45,19 @@ Route::group([
 //        return view('home.home');
 //    })->name('index');
 });
+Route::group([
+    'prefix' => '/',
+    'middleware' =>['auth:staff'], //['auth:staff', 'logging-web', 'twofa'],
+], function () {
+    Route::get('/area-position', \App\Http\Livewire\Pages\AreaPosition::class);
+    Route::get('/transaction', \App\Http\Livewire\Pages\Transaction::class);
+    Route::get('/ticket', \App\Http\Livewire\Pages\Ticket::class);
+});
+
+Route::group([
+    'prefix' => '/gate',
+    'middleware' =>['auth:staff'], //['auth:staff', 'logging-web', 'twofa'],
+    'as' => 'gate'
+], function () {
+    Route::get('/home', \App\Http\Livewire\Pages\ExitGate\Home::class);
+});

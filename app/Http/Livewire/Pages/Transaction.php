@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Pages;
 use App\Traits\Ticket\TicketQueryTrait;
 use Livewire\Component;
 
-class Ticket extends Component
+class Transaction extends Component
 {
     use TicketQueryTrait;
 
@@ -21,6 +21,6 @@ class Ticket extends Component
 
     public function render()
     {
-        return view('livewire.pages.ticket', $this->getResponseData());
+        return view('livewire.pages.transaction', $this->getResponseData());
     }
 }

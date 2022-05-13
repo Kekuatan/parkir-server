@@ -32,7 +32,7 @@
                             <td>{{$ticket->barcode_no}}</td>
                             <td>{{$ticket->created_at}}</td>
                             <td>{{$ticket->member_id ?? 'guest'}}  {{$ticket->voucher_id}}</td>
-                            {{--                            <td class="{}}">{{strtoupper($ticket->status)}}</td>--}}
+{{--                            <td class="{}}">{{strtoupper($ticket->status)}}</td>--}}
                         </tr>
                     @endforeach
                     </tbody>
