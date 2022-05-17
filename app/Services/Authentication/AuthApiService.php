@@ -12,6 +12,7 @@ use App\Services\Passport\PassportService;
 use App\Services\PhoneNumber\PhoneNumber;
 use App\Traits\PassportTokenTrait;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -50,7 +51,7 @@ class AuthApiService
         $user = User::where(function ($query) use ($request){
             return $query->where('email' , '=', $request->email);
         })->first();
-
+//        return response()->json($user);
         if (Hash::check($request->password,$user->password)){
             $this->removeAllTokenAndRefreshToken($user);
             return $this->generateOauthToken($request);

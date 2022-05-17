@@ -16,6 +16,10 @@ trait TicketQueryTrait
     public $location = 'all';
     public $vehicle = 'all';
     public $bank = 'all';
+    public $platNo = null;
+    public $barcodeNo = null;
+    public $memberId = null;
+    public $paymentMethod = null;
 
     public function queryFirst()
     {

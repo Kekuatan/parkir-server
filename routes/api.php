@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/signup', (\App\Http\Controllers\Api\Auth\SignUpController::class));
 Route::post('/login', (\App\Http\Controllers\Api\Auth\LoginController::class));
 Route::apiResource('/ticket', \App\Http\Controllers\Api\TicketController::class);
-
+Route::get('/test', function (){
+   return [];
+});
 Route::post('/client', function(Request $request){
     $baseUri = 'http://bank-bca.test/';
     $clientId = '95cac743-b424-40e9-8154-6842f5b4af3c';

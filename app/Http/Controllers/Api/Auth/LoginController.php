@@ -11,7 +11,8 @@ class LoginController extends Controller
 
     public function __invoke(Request $request)
     {
+
         $authService  = (new AuthApiService())->login($request);
-        return $authService;
+        return response()->json($authService);
     }
 }

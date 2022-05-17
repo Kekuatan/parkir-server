@@ -21,6 +21,7 @@
                         <th>No Barcode</th>
                         <th>Tanggal Masuk</th>
                         <th>Status</th>
+                        <th>Gambar masuk</th>
 
                     </tr>
                     </thead>
@@ -32,6 +33,7 @@
                             <td>{{$ticket->barcode_no}}</td>
                             <td>{{$ticket->created_at}}</td>
                             <td>{{$ticket->member_id ?? 'guest'}}  {{$ticket->voucher_id}}</td>
+                            <td>{{$ticket->picture_vehicle_in ? Storage::disk(\App\Enum\DiskEnum::PUBLIC)->url($ticket->picture_vehicle_in) : ''}}</td>
                             {{--                            <td class="{}}">{{strtoupper($ticket->status)}}</td>--}}
                         </tr>
                     @endforeach
@@ -48,5 +50,6 @@
         </div>
     </div>
 </div>
+
 
 
