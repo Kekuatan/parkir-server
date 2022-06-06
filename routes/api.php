@@ -21,6 +21,10 @@ Route::apiResource('/ticket', \App\Http\Controllers\Api\TicketController::class)
 Route::get('/test', function (){
    return [];
 });
+
+Route::get('/vehicles', function (){
+    return \App\Models\Vehicle::get();
+});
 Route::post('/client', function(Request $request){
     $baseUri = 'http://bank-bca.test/';
     $clientId = '95cac743-b424-40e9-8154-6842f5b4af3c';
@@ -51,6 +55,10 @@ Route::group([
 Route::group([
     'middleware' => ['client']
 ], function () {
+    Route::post('/ticket/get', function (Request $request) {
+        return  \App\Models\Ticket::where('barcode_no','=', $request->barcode_no)
+            ->with('vehicle')->first();
+    });
     Route::post('/ticket/in', \App\Http\Controllers\Api\Ticket\TicketInController::class);
 });
 

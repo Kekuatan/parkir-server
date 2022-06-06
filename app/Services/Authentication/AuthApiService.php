@@ -29,7 +29,7 @@ class AuthApiService
     public function signUp(Request $request)
     {
 
-        $user = User::where('email', $request->email)
+        $user = User::where('email', $request->email)->with('shift')
             ->first();
 
         if (blank($user)) {
@@ -50,7 +50,7 @@ class AuthApiService
     {
         $user = User::where(function ($query) use ($request){
             return $query->where('email' , '=', $request->email);
-        })->first();
+        })->with('shift')->first();
         if (Hash::check($request->password,$user->password)){
             $this->removeAllTokenAndRefreshToken($user);
             $authService = $this->generateOauthToken($request)->json();
