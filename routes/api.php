@@ -60,6 +60,8 @@ Route::group([
             ->with('vehicle')->first();
     });
     Route::post('/ticket/in', \App\Http\Controllers\Api\Ticket\TicketInController::class);
+    Route::post('/ticket/out', \App\Http\Controllers\Api\Ticket\TicketOutController::class);
+    Route::apiResource('/tickets', \App\Http\Controllers\Api\TicketController::class);
 });
 
 

@@ -13,6 +13,7 @@ return [
     'pagination' => 10,
     'storage_path' => [
         'picture_vehicle_in' => 'picture-vehicle-in',
+        'picture_vehicle_out' => 'picture-vehicle-out',
         'contact_us_attachment' => 'contact-us-attachments',
         'ticket_attachment' => 'ticket-attachments',
         'promotion' => 'promotions',

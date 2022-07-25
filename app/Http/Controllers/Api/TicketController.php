@@ -13,7 +13,9 @@ use Illuminate\Support\Carbon;
 
 class TicketController extends Controller
 {
-    public function index(){}
+    public function index(){
+        return response()->json([]);
+    }
     public function store(Request $request, TicketService $ticketService, MemberService $memberService)
     {
 
@@ -64,7 +66,31 @@ class TicketController extends Controller
 
     }
 
-    public function update($id, Request $request){
+    public function show($id, Request $request){
 
+    }
+
+    public function update($id, Request $request){
+        $validation = [
+            //'total_price' => 'nullable|min:0|number',
+            //'vehicle_id' => 'nullable|string',
+//            'area_position_in_id' => 'required|string|exists:area_positions,id',
+            'area_position_out_id' => 'nullable|string',
+            'barcode_no' => 'required|string',
+            //'picture_vehicle_in' => 'required|string',
+            //'picture_vehicle_out' => 'nullable|string',
+            //'user_id' => 'nullable|string',
+            //'plat_no' => 'required|string',
+            'member_card_no' => 'nullable|string', //'member_id' => 'nullable|string',
+            //'start_at' => 'required|date_format:d/m/Y H:i:s',
+            //'end_at' => 'nullable|date_format:d/m/Y H:i:s',
+            //'voucher_id' => 'nullable|string',
+            //'payment_method_id' => 'nullable|string',
+            //'bypasser_id' => 'nullable|string',
+        ];
+
+        $request->validate($validation);
+
+        return response()->json([]);
     }
 }
